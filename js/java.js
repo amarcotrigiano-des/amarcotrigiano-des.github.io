@@ -88,3 +88,5 @@ refreshData();
 lButton.addEventListener("click", decrementDate);
 rButton.addEventListener("click", incrementDate);
 
+$("body").css("font-size",Math.max($(window).width()/50,8)+"px")
+
