@@ -5,7 +5,7 @@ html {
 body {
 	height: 100%;
 	width: 100%;
-	background: linear-gradient(to top left, #0000cc 0%, #66ffff 100%);
+	background: #99ccff;
 }
 
 h1 {
@@ -23,11 +23,5 @@ img {
 
 td {
 	font-size: 5vw;
-}
-
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 }
 
