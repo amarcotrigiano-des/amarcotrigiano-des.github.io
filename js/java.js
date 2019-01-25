@@ -5,23 +5,6 @@ var finalDay = new Date("2019-03-28");
 var lButton = document.getElementById("lButton");
 var rButton = document.getElementById("rButton");
 
-var users = ["Alvaro M", "Alvaro W", "Eliana", "Andrés", "Lenin", "Jin", "Vecino de Jin"];
-var turns = [0,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,3,2,1,0,
-			 4,5,6,4,2,1,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6,2,1,3,0,
-			 4,5,6];
-
 function daysRemaining(myDate) {
 	var t = Date.parse(finalDay) - Date.parse(myDate);
 	var days = 0;
@@ -43,14 +26,50 @@ function formatDate(date) {
     return wd + ' '+ (d <= 9 ? '0' + d : d) + ' ' + m + ' ' + y;
 }
 
+function removeAllChilds()
+{
+	var myNode = document.getElementById("next_dates");
+	while (myNode.firstChild)
+	{
+    	myNode.removeChild(myNode.firstChild);
+	}
+}
+
+function appendDate(date)
+{
+	var node = document.createElement("LI");
+	var textnode = document.createTextNode(date);
+	node.appendChild(textnode);
+	document.getElementById("next_dates").appendChild(node);
+}
+
+function nextDates(arrayPosition)
+{
+	var currentUser = data[arrayPosition].User;
+	var i;
+	var noDates = true;
+	removeAllChilds();
+	for (i = arrayPosition+1; i<100; i++)
+	{
+		if(data[i].User === currentUser)
+		{
+			appendDate(formatDate(new Date(data[i].Date)));
+			noDates = false;
+		}
+	}
+	if(noDates)
+		appendDate("NO MORE DATES");
+}
+
 function refreshData()
 {
 	var remain=daysRemaining(dateShown);
 	//document.getElementById("cell_date").innerText=formatDate(dateShown);
 	document.getElementById("cell_days").innerText=remain;
 	document.getElementById("dateButton").innerText=formatDate(dateShown);
-	document.getElementById("cell_name").innerText=users[turns[100-remain]];
-	console.log("remain: " + remain + ", turn: " + turns[100-remain] + ", Name: " + users[turns[100-remain]])
+	document.getElementById("cell_name").innerText=users[data[100-remain].User];
+	nextDates(100-remain);
+	console.log("remain: " + remain + ", turn: " + data[100-remain].User + ", Name: " + users[data[100-remain].User])
 	checkDate(dateShown);
 }
 
