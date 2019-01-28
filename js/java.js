@@ -53,7 +53,7 @@ function nextDates(arrayPosition)
 	var i;
 	var noDates = true;
 	removeAllChilds();
-	for (i = arrayPosition+1; i<totalDays; i++)
+	for (i = arrayPosition+1; i<=totalDays; i++)
 	{
 		if(data[i].User === currentUser)
 		{
@@ -110,6 +110,7 @@ lButton.addEventListener("click", decrementDate);
 rButton.addEventListener("click", incrementDate);
 
 document.getElementById("season_text").innerText=season;
+document.getElementById("version_text").innerText='v'+version;
 
 $("body").css("font-size",Math.max($(window).width()/50,8)+"px")
 
