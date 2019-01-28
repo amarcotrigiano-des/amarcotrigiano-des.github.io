@@ -1,3 +1,5 @@
+var initialDay = new Date("2018-12-17 EST");
+var totalDays = 100;
 var users = ["Alvaro M", "Alvaro W", "Eliana", "Andrés", "Lenin", "Jin", "Vecino de Jin"];
 var data = 			 
 [
@@ -163,11 +165,11 @@ var data =
 	},
 	{
 		"Date": "2019/01/26",
-		"User": "3"
+		"User": "0"
 	},
 	{
 		"Date": "2019/01/27",
-		"User": "0"
+		"User": "3"
 	},
 	{
 		"Date": "2019/01/28",

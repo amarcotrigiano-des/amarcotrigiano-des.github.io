@@ -1,15 +1,19 @@
-var today = new Date();
-var dateShown = today;
-var initialDay = new Date("2018-12-17");
-var finalDay = new Date("2019-03-28");
+var dateShown = new Date();
+dateShown.setHours(0,0,0,0);
+//dateShown.setDate(dateShown.toLocaleString('en-US', {timeZone: 'EST'}));
 var lButton = document.getElementById("lButton");
 var rButton = document.getElementById("rButton");
+
+var finalDay = new Date(initialDay);
+finalDay.setDate(finalDay.getDate() + totalDays);
+console.log("initialDay: " + initialDay);
+console.log("finalDay: " + finalDay);
 
 function daysRemaining(myDate) {
 	var t = Date.parse(finalDay) - Date.parse(myDate);
 	var days = 0;
 	if(t>0)
-		days = Math.floor( t/(1000*60*60*24) );
+		days = Math.round(Math.abs(t/(1000*60*60*24)));
 	console.log("Final date:" + formatDate(finalDay));
 	console.log("Date:" + formatDate(myDate));
 	console.log("Days: "+ days);
@@ -49,7 +53,7 @@ function nextDates(arrayPosition)
 	var i;
 	var noDates = true;
 	removeAllChilds();
-	for (i = arrayPosition+1; i<100; i++)
+	for (i = arrayPosition+1; i<totalDays; i++)
 	{
 		if(data[i].User === currentUser)
 		{
@@ -64,12 +68,11 @@ function nextDates(arrayPosition)
 function refreshData()
 {
 	var remain=daysRemaining(dateShown);
-	//document.getElementById("cell_date").innerText=formatDate(dateShown);
 	document.getElementById("cell_days").innerText=remain;
 	document.getElementById("dateButton").innerText=formatDate(dateShown);
-	document.getElementById("cell_name").innerText=users[data[100-remain].User];
-	nextDates(100-remain);
-	console.log("remain: " + remain + ", turn: " + data[100-remain].User + ", Name: " + users[data[100-remain].User])
+	document.getElementById("cell_name").innerText=users[data[totalDays-remain].User];
+	nextDates(totalDays-remain);
+	console.log("remain: " + remain + ", turn: " + data[totalDays-remain].User + ", Name: " + users[data[totalDays-remain].User])
 	checkDate(dateShown);
 }
 
@@ -94,14 +97,13 @@ function checkDate(date)
 		rButton.disabled = false;
 	else
 		rButton.disabled = true;
-	if(remain<100)
+	if(remain<totalDays)
 		lButton.disabled = false;
 	else
 		lButton.disabled = true;
 }
-//console.log(formatDate(today));
-//console.log(daysRemaining(today));
 
+dateShown.setDate(dateShown.getDate());
 refreshData();
 
 lButton.addEventListener("click", decrementDate);
