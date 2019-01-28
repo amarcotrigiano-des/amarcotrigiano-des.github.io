@@ -109,5 +109,7 @@ refreshData();
 lButton.addEventListener("click", decrementDate);
 rButton.addEventListener("click", incrementDate);
 
+document.getElementById("season_text").innerText=season;
+
 $("body").css("font-size",Math.max($(window).width()/50,8)+"px")
 

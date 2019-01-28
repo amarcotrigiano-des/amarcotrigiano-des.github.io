@@ -10,9 +10,16 @@ body {
 
 h1 {
 	font-family: fantasy;
-	font-size: 7em;
+	font-size: 6em;
 	text-align: center;
 	margin-top: 20px;
+}
+
+h2 {
+	font-family: fantasy;
+	font-size: 2em;
+	text-align: center;
+	font-style: italic;
 }
 
 img {

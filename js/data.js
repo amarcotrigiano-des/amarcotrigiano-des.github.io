@@ -1,5 +1,6 @@
 var initialDay = new Date("2018-12-17 EST");
 var totalDays = 100;
+var season = "Season 2018-2019"
 var users = ["Alvaro M", "Alvaro W", "Eliana", "Andrés", "Lenin", "Jin", "Vecino de Jin"];
 var data = 			 
 [
